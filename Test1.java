@@ -1,17 +1,42 @@
-import java.util.List;
-import java.util.Arrays;
-class Program{
-    static void Converter(int arg){
-        System.out.println(Math.abs(arg));
+// package CipherSchoolWeeklyAssignment.Week3.B1Day15;
+class worker1 implements Runnable{
+    public void run(){
+        for(int i= 0; i<= 20; i++){
+            System.out.println("Thread One is working.");
+            try{
+                Thread.sleep(1000);
+            } catch(InterruptedException e){
+                e.printStackTrace();
+            }
+        }
     }
-    void doAction(){
-        List<Integer> numbers = Arrays.asList(5,-3,6,7,8,-9,2);
-        numbers.forEach(Program::Converter);
+}
+class worker2 implements Runnable{
+    public void run(){
+        for(int i= 0; i<= 20; i++){
+            System.out.println("Hello FRom Thread two.");
+            try{
+                Thread.sleep(1000);
+            } catch(InterruptedException e){
+                e.printStackTrace();
+            }
+        }
     }
 }
 public class Test1 {
+    Thread t1, t2;
+    Test1() {
+        t1 = new Thread(new worker1());
+        t2 = new Thread(new worker2());
+
+        t1.setPriority(5);
+        t2.setPriority(10);
+
+        t1.start();
+        t2.start();
+
+    }
     public static void main(String[] args) {
-        Program obj = new Program();
-        obj.doAction();
+        new Test1();
     }
 }

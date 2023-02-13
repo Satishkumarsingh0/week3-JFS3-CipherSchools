@@ -1,29 +1,20 @@
-import java.util.ArrayList;
+// package CipherSchoolWeeklyAssignment.Week3.B1Day15;
 
-// package CipherSchoolWeeklyAssignment.Week3;
-
-public class Test0 {
-    public static void change(String m){
-        System.out.println(m.toUpperCase());
-    }
-    public static void main(String[] args) {
-        ArrayList<String> lang = new ArrayList<String>();
-        lang.add("Java");
-        lang.add("CSharp");
-        lang.add("Python");
-        lang.add("PHP");
-        // lang.forEach(System.out::println);
-        lang.forEach(Test0::change);
-        
-        for(String t:lang){
-            change(t);
+class worker extends Thread{
+    public void run(){
+        for(int i= 0; i<= 10; i++){
+            System.out.println("Thread 1 Running....."+ new java.util.Date());
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e){
+                e.printStackTrace();
+            }
         }
-
-        change(lang.get(0));
-        change(lang.get(1));
-        change(lang.get(2));
-        change(lang.get(3));
-
-
+    }
+}
+public class Test0 {
+    public static void main(String[] args) {
+        worker w1 = new worker();
+        w1.start();
     }
 }
